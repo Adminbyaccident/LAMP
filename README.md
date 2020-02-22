@@ -13,6 +13,14 @@ This script will build a LAMP stack on Debian 10 following instructions from the
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
 https://www.adminbyaccident.com/gnu-linux/lamp-stack-debian/
 
+## The lamp-ubuntu1804.sh script
+This script will build a LAMP stack on Ubuntu 18.04 following instructions from these sources:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
+https://www.adminbyaccident.com/gnu-linux/lamp-stack-debian/
+
+I chose the Debian install because the Ubuntu one at DOcean uses MySQL. The script changes a bit on de DB part of it if you choose that route. I'll put more scripts with tuneables down below in the near future.
+
 ## The mariadb-install-centos8.sh script
 This will install MariaDB on the default repositories found on a CentOS 8 install. As a reference, you may follow this guide to understand / change the script.
 
