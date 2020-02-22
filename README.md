@@ -8,6 +8,11 @@ https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mar
 https://www.adminbyaccident.com/gnu-linux/lamp-stack-debian/
 
 ## The mariadb-install-centos8.sh script
-This will install MariaDB on the default repositories found on a CentOS 8 install. As a reference you may follow this guide to understand / change the script.
+This will install MariaDB on the default repositories found on a CentOS 8 install. As a reference, you may follow this guide to understand / change the script.
 
 https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-centos-7
+
+## The mariadb-install-debian10.sh
+This as with the CentOS version will install MariaDB on the default repositories found on a Debian 10 install. Be aware of Debian ways for the database root password. There are a few links on the script to better understand this. As a reference, you may follow this guide to understand / change the script:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10
