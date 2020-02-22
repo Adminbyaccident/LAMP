@@ -1,6 +1,12 @@
 # LAMP
 This is a collection of scripts to build different LAMP servers.
 
+## The lamp-centos8.sh script
+This script will build a LAMP stack on CentOS 8 following instructions from these sources:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-7
+https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-centos-7-servers
+
 ## The lamp-debian10.sh script
 This script will build a LAMP stack on Debian 10 following instructions from these sources:
 
