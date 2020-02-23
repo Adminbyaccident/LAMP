@@ -2,7 +2,13 @@
 
 # This script will install a MariaDB server on Debian 10 and  
 # will automate the mysql_secure_installation process too.
-# Tune it up to your needs and please, change the password.
+# Tune it up to your needs.
+
+# Instructions on how to use this script 
+
+# chmod +x SCRIPTNAME.sh
+
+# sudo ./SCRIPTNAME.sh
 
 # Update the system sources
 apt update -y
