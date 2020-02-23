@@ -3,6 +3,12 @@
 # This is an install script for a LAMP stack on CentOS 8.
 # Modify it at your convenience.
 
+# Instructions on how to use this script 
+
+# chmod +x SCRIPTNAME.sh
+
+# sudo ./SCRIPTNAME.sh
+
 # Let's update Debian local repositories on this box.
 yum update -y
 
