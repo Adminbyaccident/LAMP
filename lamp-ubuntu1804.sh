@@ -3,6 +3,12 @@
 # This is an install script for a LAMP stack on Ubuntu 18.04 LTS.
 # Modify it at your convenience.
 
+# Instructions on how to use this script 
+
+# chmod +x SCRIPTNAME.sh
+
+# sudo ./SCRIPTNAME.sh
+
 # Let's update Debian local repositories on this box.
 apt update -y
 
