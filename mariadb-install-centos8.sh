@@ -3,6 +3,12 @@
 # This is an install script for CentOS systems in order to automate the MariaDB installation process.
 # Tune it up to your needs and please, change the password.
 
+# Instructions on how to use this script 
+
+# chmod +x SCRIPTNAME.sh
+
+# sudo ./SCRIPTNAME.sh
+
 # Update the system sources
 yum update -y
 
