@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This is an install script for a LAMP stack on Ubuntu 18.04 LTS.
+# This is a modification script for a LAMP stack on Ubuntu 18.04 LTS.
 # It will modify the LAMP stack to use the MPM Event module instead of the default prefork
 # It will also make use of the PHP-FPM processor for PHP
 # More info on my FreeBSD guides:
