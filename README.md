@@ -21,6 +21,11 @@ https://www.adminbyaccident.com/gnu-linux/lamp-stack-debian/
 
 I chose the Debian install because the Ubuntu one at DOcean uses MySQL. The script changes a bit on de DB part of it if you choose that route. I'll put more scripts with tuneables down below in the near future.
 
+## The lamp-ubuntu1804_mysql.sh script
+This one is basically the same as above but using MySQL instead of MariaDB. The source is:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04
+
 ## The mariadb-install-centos8.sh script
 This will install MariaDB on the default repositories found on a CentOS 8 install. As a reference, you may follow this guide to understand / change the script.
 
