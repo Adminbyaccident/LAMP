@@ -39,6 +39,9 @@ ufw allow 443
 # Let's install Apache HTTP
 apt install -y apache2
 
+# Set the ServerName directive in the main configuration file
+echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+
 # Let's install MariaDB database.
 apt install -y mariadb-server
 
