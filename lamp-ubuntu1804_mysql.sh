@@ -14,8 +14,8 @@ apt update -y
 # Upgrade the already installed packages on this box.
 apt upgrade -y
 
-# Install Apache HTTP
-apt install -y apache2
+# Enable port 22 for SSH connections on the firewall prior to firing it up
+ufw allow 22
 
 # Install Expect to automate the firewall enablement as well as
 # the mysql_secure_installation procedure for a later time.
@@ -30,6 +30,9 @@ send \"y\r\"
 expect eof
 ")
 echo "ENABLE_UFW_22"
+
+# Install Apache HTTP
+apt install -y apache2
 
 # Enable the firewall for the Apache HTTP web server
 ufw allow in "Apache Full"
