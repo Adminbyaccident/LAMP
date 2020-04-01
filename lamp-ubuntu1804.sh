@@ -15,6 +15,9 @@ apt update -y
 # Let's upgrade the already installed packages on this box.
 apt upgrade -y
 
+# Enable port 22 for SSH connections on the firewall prior to firing it up
+ufw allow 22
+
 # Install Expect so the MySQL secure installation process can be automated.
 apt install -y expect
 
