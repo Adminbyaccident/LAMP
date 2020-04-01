@@ -34,6 +34,9 @@ echo "ENABLE_UFW_22"
 # Install Apache HTTP
 apt install -y apache2
 
+# Set the ServerName directive in the main configuration file
+echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+
 # Enable the firewall for the Apache HTTP web server
 ufw allow in "Apache Full"
 
