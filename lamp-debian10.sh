@@ -35,9 +35,6 @@ echo "ENABLE_UFW_22"
 # Let's enable the ports for a web server on the firewall
 ufw allow in "WWW Full"
 
-# Let's activate the firewall.
-ufw enable
-
 # Let's install Apache HTTP
 apt install -y apache2
 
@@ -107,6 +104,9 @@ echo "
 
 # Enable the just created site.
 a2ensite your_domain
+
+# Disable the default site.
+a2dissite 000-default.conf
 
 # Reload Apache HTTP with the new configuration on the new website
 systemctl reload apache2
