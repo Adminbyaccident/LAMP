@@ -9,7 +9,7 @@
 
 # sudo ./SCRIPTNAME.sh
 
-# Let's update Debian local repositories on this box.
+# Let's update CentOS local repositories on this box.
 yum update -y
 
 # Let's upgrade the already installed packages on this box.
