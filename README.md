@@ -28,7 +28,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mys
 
 ## The lamp-ubuntu1804_event-php_fpm.sh script
 If you need to gain performance this script will modify your traditional LAMP stack and will leverage the MPM Event module found on Apache HTTP and will make use of the PHP-FPM processor for PHP. The sources are:
-
+https://www.digitalocean.com/community/tutorials/how-to-configure-apache-http-with-mpm-event-and-php-fpm-on-ubuntu-18-04
 https://www.digitalocean.com/community/tutorials/how-to-configure-apache-http-with-mpm-event-and-php-fpm-on-freebsd-12-0
 https://www.adminbyaccident.com/freebsd/how-to-freebsd/how-to-set-apaches-mpm-event-and-php-fpm-on-freebsd/
 
