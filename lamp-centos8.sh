@@ -3,7 +3,7 @@
 # chmod +x SCRIPTNAME.sh
 # sudo ./SCRIPTNAME.sh
 #
-# SCRIPT: mysql-install-centos8.sh
+# SCRIPT: lamp-centos8.sh
 # AUTHOR: ALBERT VALBUENA
 # DATE: 18-12-2020
 # SET FOR: Production
