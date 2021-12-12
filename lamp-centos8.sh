@@ -1,13 +1,31 @@
 #!/usr/bin/bash
-
-# This is an install script for a LAMP stack on CentOS 8.
-# Modify it at your convenience.
-
-# Instructions on how to use this script 
-
+# Instructions on how to use this script:
 # chmod +x SCRIPTNAME.sh
-
 # sudo ./SCRIPTNAME.sh
+#
+# SCRIPT: mysql-install-centos8.sh
+# AUTHOR: ALBERT VALBUENA
+# DATE: 18-12-2020
+# SET FOR: Production
+# (For Alpha, Beta, Dev, Test and Production)
+#
+# PLATFORM: CentOS 8 / RHEL 8
+#
+# PURPOSE: This is an install script for MySQL 8 on CentOS 8
+#
+# REV LIST:
+# DATE: 18-12-2020
+# BY: ALBERT VALBUENA
+# MODIFICATION: 12-12-2021
+#
+#
+# set -n # Uncomment to check your syntax, without execution.
+# # NOTE: Do not forget to put the comment back in or
+# # the shell script will not execute!
+
+##########################################################
+################ BEGINNING OF MAIN #######################
+##########################################################
 
 # Let's update CentOS local repositories on this box.
 dnf update -y
