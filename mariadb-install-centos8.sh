@@ -1,59 +1,110 @@
 #!/usr/bin/bash
-
-# This is an install script for CentOS systems in order to automate the MariaDB installation process.
-# Tune it up to your needs and please, change the password.
-
-# Instructions on how to use this script 
-
+# Instructions on how to use this script:
 # chmod +x SCRIPTNAME.sh
-
 # sudo ./SCRIPTNAME.sh
+#
+# SCRIPT: mariadb-install-centos8.sh
+# AUTHOR: ALBERT VALBUENA
+# DATE: 23-02-2020
+# SET FOR: Production
+# (For Alpha, Beta, Dev, Test and Production)
+#
+# PLATFORM: CentOS 8 / RHEL 8
+#
+# PURPOSE: This is an install script for MySQL 8 on CentOS 8
+#
+# REV LIST:
+# DATE: 18-12-2020
+# BY: ALBERT VALBUENA
+# MODIFICATION: 12-12-2021
+#
+#
+# set -n # Uncomment to check your syntax, without execution.
+# # NOTE: Do not forget to put the comment back in or
+# # the shell script will not execute!
 
-# Update the system sources
-yum update -y
+##########################################################
+################ BEGINNING OF MAIN #######################
+##########################################################
 
-# Upgrade the system before moving forward
-yum upgrade -y
+# Let's update CentOS local repositories on this box.
+dnf update -y
 
-# Install MariaDB
-yum install -y mariadb-server mariadb
+# Let's install MariaDB database.
+dnf module enable mariadb:10.5
+dnf install -y mariadb-server mariadb
 
-# Enable MariaDB to start up at boot time
-systemctl enable mariadb.service
+# Enable MariaDB service
+systemctl enable mariadb
 
-# Start up MariaDB service
-systemctl start mariadb.service
+# Start up MariaDB
+systemctl start mariadb
 
-# Install expect so the mysql_secure_installation script can be automated
-yum install -y expect
+# Uncomment the line below if you prefer to have a password protected access to MariaDB
+# instead of just using privileges inherited from using the system's root account.
+# Do also uncomment the second expect script and comment out the first one.
+# More details here: https://mariadb.com/kb/en/authentication-plugin-unix-socket/
 
-# This below is the actual Expect script. Change the password!!!
-# Not changing the password found on this script on the internet is a huge security risk.
- 
-SECURE_MYSQL=$(expect -c "
+#dnf install -y pwgen
+#DB_ROOT_PASSWORD=$(pwgen 32 --secure --numerals --capitalize) && export DB_ROOT_PASSWORD && echo $DB_ROOT_PASSWORD >> /root/db_root_pwd.txt
+
+# Install Expect so the MySQL secure installation process can be automated.
+dnf install -y expect
+
+SECURE_MARIADB=$(expect -c "
 set timeout 2
 spawn mysql_secure_installation
 expect \"Enter current password for root (enter for none):\"
-send \"\r\"
-expect \"Set root password? \[Y/n\]\"
+send \"Bloody_hell_doN0t\r\"
+expect \"Switch to unix_socket authentication\"
+send \"n\r\"
+expect \"Change the root password?\"
+send \"n\r\"
+expect \"Remove anonymous users?\"
 send \"y\r\"
-expect \"New password:\"
-send \"albert-XP24\r\"
-expect \"Re-enter new password:\"
-send \"albert-XP24\r\"
-expect \"Remove anonymous users? \[Y/n\]\"
+expect \"Disallow root login remotely?\"
 send \"y\r\"
-expect \"Disallow root login remotely? \[Y/n\]\"
+expect \"Remove test database and access to it?\"
 send \"y\r\"
-expect \"Remove test database and access to it? \[Y/n\]\"
-send \"y\r\"
-expect \"Reload privilege tables now? \[Y/n\]\"
+expect \"Reload privilege tables now?\"
 send \"y\r\"
 expect eof
 ")
 
-echo "$SECURE_MYSQL"
+echo "$SECURE_MARIADB"
 
-# Now MariaDB has been installed you may not need expect anymore.
-# Uncomment the line below to remove expect.
-# yum remove -y expect
+#SECURE_MARIADB=$(expect -c "
+#set timeout 2
+#spawn mysql_secure_installation
+#expect \"Enter current password for root (enter for none):\"
+#send \"Bloody_hell_doN0t\r\"
+#expect \"Switch to unix_socket authentication\"
+#send \"y\r\"
+#expect \"Change the root password?\"
+#send \"y\r\"
+#expect \"New password\r\"
+#send \"$DB_ROOT_PASSWORD\r\"
+#expect \"Re-enter new password:\r\"
+#send \"$DB_ROOT_PASSWORD\r\"
+#expect \"Remove anonymous users?\"
+#send \"y\r\"
+#expect \"Disallow root login remotely?\"
+#send \"y\r\"
+#expect \"Remove test database and access to it?\"
+#send \"y\r\"
+#expect \"Reload privilege tables now?\"
+#send \"y\r\"
+#expect eof
+#")
+
+#echo "$SECURE_MARIADB"
+
+# No one but root can read this file. Read only permission.
+chmod 400 /root/db_root_pwd.txt
+
+echo 'Your MariaDB install has finished".
+
+# Sources:
+# https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-centos-8
+
+# End of file.
