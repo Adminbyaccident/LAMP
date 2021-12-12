@@ -11,7 +11,7 @@
 #
 # PLATFORM: CentOS 8 / RHEL 8
 #
-# PURPOSE: This is an install script for MySQL 8 on CentOS 8
+# PURPOSE: This is an install script for MariaDB on CentOS 8
 #
 # REV LIST:
 # DATE: 18-12-2020
