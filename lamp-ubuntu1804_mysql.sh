@@ -9,7 +9,7 @@
 # SET FOR: Production
 # (For Alpha, Beta, Dev, Test and Production)
 #
-# PLATFORM: Debian 10
+# PLATFORM: Ubuntu 18.04
 #
 # PURPOSE: This is an install script for a LAMP stack on Ubuntu 18.04 LTS with MySQL instead of MariaDB.
 #
