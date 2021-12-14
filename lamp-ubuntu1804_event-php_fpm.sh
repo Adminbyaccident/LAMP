@@ -1,11 +1,31 @@
 #!/bin/bash
+# Instructions on how to use this script:
+# chmod +x SCRIPTNAME.sh
+# sudo ./SCRIPTNAME.sh
+#
+# SCRIPT: lamp-ubuntu1804_event-php_fpm.sh
+# AUTHOR: ALBERT VALBUENA
+# DATE: 31-05-2020
+# SET FOR: Production
+# (For Alpha, Beta, Dev, Test and Production)
+#
+# PLATFORM: Ubuntu 18.04
+#
+# PURPOSE: This script configures the LAMP stack on an Ubuntu 18.04 system to use the Event MPM module on Apache HTTP and PHP-FPM
+#
+# REV LIST:
+# DATE: 14-12-2021
+# BY: ALBERT VALBUENA
+# MODIFICATION: 14-12-2021
+#
+#
+# set -n # Uncomment to check your syntax, without execution.
+# # NOTE: Do not forget to put the comment back in or
+# # the shell script will not execute!
 
-# This is a modification script for a LAMP stack on Ubuntu 18.04 LTS.
-# It will modify the LAMP stack to use the MPM Event module instead of the default prefork
-# It will also make use of the PHP-FPM processor for PHP
-# More info on my FreeBSD guides:
-# https://www.digitalocean.com/community/tutorials/how-to-configure-apache-http-with-mpm-event-and-php-fpm-on-freebsd-12-0
-# https://www.adminbyaccident.com/freebsd/how-to-freebsd/how-to-set-apaches-mpm-event-and-php-fpm-on-freebsd/
+##########################################################
+################ BEGINNING OF MAIN #######################
+##########################################################
 
 # Instructions on how to use this script 
 
@@ -44,24 +64,24 @@ a2enmod fcgid
 a2enconf php7.2-fpm
 
 # Remove the existing Virtual Host
-rm /etc/apache2/sites-available/albertvalbuena.com.conf 
+rm /etc/apache2/sites-available/example.com.conf 
 
 # Create a new Virtual Host file
-touch /etc/apache2/sites-available/albertvalbuena.com.conf
+touch /etc/apache2/sites-available/example.com.conf
 
 # Configure the Virtual Host
 echo "
 <VirtualHost *:80>
-    ServerName albertvalbuena.com
-    ServerAlias www.albertvalbuena.com 
-    ServerAdmin thewhitereflex@gmail.com
-    DocumentRoot /var/www/albertvalbuena.com
+    ServerName example.com
+    ServerAlias www.example.com 
+    ServerAdmin youremail@gmail.com
+    DocumentRoot /var/www/example.com
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 	<FilesMatch ".php$">
 	SetHandler "proxy:unix:/var/run/php/php7.2-fpm.sock\|fcgi://localhost/"
 	</FilesMatch>
-</VirtualHost>" >> /etc/apache2/sites-available/albertvalbuena.com.conf
+</VirtualHost>" >> /etc/apache2/sites-available/example.com.conf
 
 # Enable the proxy module
 a2enmod proxy
