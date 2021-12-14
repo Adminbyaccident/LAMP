@@ -1,14 +1,31 @@
 #!/usr/bin/bash
-
-# This script will install a MariaDB server on Debian 10 and  
-# will automate the mysql_secure_installation process too.
-# Tune it up to your needs.
-
-# Instructions on how to use this script 
-
+# Instructions on how to use this script:
 # chmod +x SCRIPTNAME.sh
-
 # sudo ./SCRIPTNAME.sh
+#
+# SCRIPT: mariadb-install-debian10.sh
+# AUTHOR: ALBERT VALBUENA
+# DATE: 22-02-2020
+# SET FOR: Production
+# (For Alpha, Beta, Dev, Test and Production)
+#
+# PLATFORM: Debian 10
+#
+# PURPOSE: This script installs MariaDB DB on a Debian 10 system
+#
+# REV LIST:
+# DATE: 14-12-2021
+# BY: ALBERT VALBUENA
+# MODIFICATION: 14-12-2021
+#
+#
+# set -n # Uncomment to check your syntax, without execution.
+# # NOTE: Do not forget to put the comment back in or
+# # the shell script will not execute!
+
+##########################################################
+################ BEGINNING OF MAIN #######################
+##########################################################
 
 # Update the system sources
 apt update -y
