@@ -1,15 +1,33 @@
 #!/bin/bash
-
-# This is an install script for a LAMP stack on Ubuntu 18.04 LTS.
-# Modify it at your convenience.
-
-# Instructions on how to use this script 
-
+# Instructions on how to use this script:
 # chmod +x SCRIPTNAME.sh
-
 # sudo ./SCRIPTNAME.sh
+#
+# SCRIPT: lamp-ubuntu1804.sh
+# AUTHOR: ALBERT VALBUENA
+# DATE: 22-02-2020
+# SET FOR: Production
+# (For Alpha, Beta, Dev, Test and Production)
+#
+# PLATFORM: Ubuntu 18.04
+#
+# PURPOSE: This script installs a LAMP stack on an Ubuntu 18.04 system
+#
+# REV LIST:
+# DATE: 14-12-2021
+# BY: ALBERT VALBUENA
+# MODIFICATION: 14-12-2021
+#
+#
+# set -n # Uncomment to check your syntax, without execution.
+# # NOTE: Do not forget to put the comment back in or
+# # the shell script will not execute!
 
-# Let's update Debian local repositories on this box.
+##########################################################
+################ BEGINNING OF MAIN #######################
+##########################################################
+
+# Let's update Ubuntu's local repositories on this box.
 apt update -y
 
 # Let's upgrade the already installed packages on this box.
@@ -87,37 +105,37 @@ sed -i 's/DirectoryIndex/DirectoryIndex index.php/' /etc/apache2/mods-enabled/di
 systemctl reload apache2
 
 # Let's create a directory dedicated to a VirtualHost for one website.
-mkdir /var/www/albertvalbuena.com
+mkdir /var/www/example.com
 
 # Let's make that directory owned by the Apache HTTP user on Debian
-chown -R www-data:www-data  /var/www/albertvalbuena.com
+chown -R www-data:www-data  /var/www/example.com
 
 # Create the VirtualHost configuration file for that website.
-touch /etc/apache2/sites-available/albertvalbuena.com.conf
+touch /etc/apache2/sites-available/example.com.conf
 
 # Add the VirtualHost configuration into the file
 echo "
 <VirtualHost *:80>
-    ServerName albertvalbuena.com
-    ServerAlias www.albertvalbuena.com 
-    ServerAdmin thewhitereflex@gmail.com
-    DocumentRoot /var/www/albertvalbuena.com
+    ServerName example.com
+    ServerAlias www.example.com 
+    ServerAdmin youremailgmail.com
+    DocumentRoot /var/www/example.com
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>" >> /etc/apache2/sites-available/albertvalbuena.com.conf
+</VirtualHost>" >> /etc/apache2/sites-available/example.com.conf
 
 # Enable the just created site.
-a2ensite albertvalbuena.com
+a2ensite example.com
 
 # Reload Apache HTTP with the new configuration on the new website
 systemctl reload apache2
 
 # Test PHP
 # First we create a php file
-touch /var/www/albertvalbuena.com/info.php
+touch /var/www/example.com/info.php
 
 # Second we add a simple PHP script so it will display information about the site.
-echo "<?php phpinfo(); ?>" >> /var/www/albertvalbuena.com/info.php
+echo "<?php phpinfo(); ?>" >> /var/www/example/info.php
 
 # Remove the info.php file once you've tested the site.
 
