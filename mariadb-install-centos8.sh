@@ -99,8 +99,8 @@ echo "$SECURE_MARIADB"
 
 #echo "$SECURE_MARIADB"
 
-# No one but root can read this file. Read only permission.
-chmod 400 /root/db_root_pwd.txt
+# No one but root can read this file. Read only permission. Uncomment if pwgen is used for the DB password generation.
+# chmod 400 /root/db_root_pwd.txt
 
 echo 'Your MariaDB install has finished".
 
