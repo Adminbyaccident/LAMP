@@ -89,4 +89,7 @@ expect eof
 
 echo "$SECURE_MARIADB"
 
+# Edit the ServerName directive
+sed -i -e '/ServerName/s/#ServerName/ServerName/' /etc/httpd/conf/httpd.conf
+
 echo "The LAMP stack on Fedora 35 has been installed. No hardening has been made on this script."
