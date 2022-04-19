@@ -45,7 +45,7 @@ systemctl enable httpd
 systemctl start httpd
 
 # Let's install MariaDB database.
-dnf module enable mariadb:10.5
+dnf -y module enable mariadb:10.5
 dnf install -y mariadb-server mariadb
 
 # Enable MariaDB service
