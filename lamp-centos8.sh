@@ -117,7 +117,7 @@ echo "$SECURE_MARIADB"
 chmod 400 /root/db_root_pwd.txt
 
 # Install PHP
-dnf module enable php:7.4
+dnf -y module enable php:7.4
 dnf install -y php php-mysqlnd
 
 # Restart Apache HTTP so it absorves PHP
