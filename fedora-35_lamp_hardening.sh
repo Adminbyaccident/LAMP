@@ -85,10 +85,11 @@ echo 'TraceEnable off' >> /etc/httpd/conf/httpd.conf
 
 # Allow specific HTTP methods.
 echo "
-<LimitExcept GET POST HEAD>
-	deny from all
-</LimitExcept>
-" >>  /etc/httpd/conf/httpd.conf
+<Directory "/var/www">
+    <LimitExcept GET POST HEAD>
+        deny from all
+    </LimitExcept>
+</Directory>" >> /etc/httpd/conf/httpd.conf
 
 # Create the file which will contain the WAF like rules.
 touch /etc/httpd/conf.modules.d/00-waf-like.conf
