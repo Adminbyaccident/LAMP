@@ -211,8 +211,6 @@ RewriteRule ^(.*)$ - [F]
 </IfModule>
 " >> /etc/httpd/conf.modules.d/00-waf-like.conf
 
-echo "Include /etc/httpd/conf.modules.d/waf-like.conf" >> /etc/httpd/conf/httpd.conf
-
 # Restart Apache HTTP for the changes to be applied
 systemctl restart httpd
 
