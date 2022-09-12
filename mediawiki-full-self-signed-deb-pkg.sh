@@ -34,6 +34,11 @@ apt update && apt upgrade -y
 # such as enabling the firewall or the mysql_secure_installation bit.
 apt install -y expect
 
+# Let's enable the ports for SSH acccess and a web server on the firewall
+ufw allow 22
+ufw allow 80
+ufw allow 443
+
 # Let's enable port 22 (for the SSH service) on the UFW firewall.
 
 ENABLE_UFW_22=$(expect -c "
@@ -44,10 +49,6 @@ send \"y\r\"
 expect eof
 ")
 echo "ENABLE_UFW_22"
-
-# Let's enable the ports for a web server on the firewall
-ufw allow 80
-ufw allow 443
 
 # Install Apache
 apt install -y apache2
