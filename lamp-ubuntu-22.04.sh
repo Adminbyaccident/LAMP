@@ -100,6 +100,9 @@ a2enmod proxy
 # Enable the proxy_fcgi module
 a2enmod proxy_fcgi setenvif
 
+# Enable HTTP/2
+a2enmod http2
+
 # Restart Apache2
 systemctl reload apache2
 
