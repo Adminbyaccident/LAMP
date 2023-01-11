@@ -145,7 +145,7 @@ dnf install -y httpd-tools php php-cli php-json php-gd php-mbstring php-pdo php-
 sed -i -e '/expose_php/s/expose_php = On/expose_php = Off/' /etc/php.ini
 
 # Enable Security Headers
-echo "
+echo '
 <IfModule mod_headers.c>
     Header set Content-Security-Policy \"upgrade-insecure-requests;\"
     Header set Strict-Transport-Security \"max-age=31536000; includeSubDomains\"
@@ -155,7 +155,8 @@ echo "
     Header set Referrer-Policy \"strict-origin\"
     Header set X-Frame-Options: \"deny\"
     SetEnv modHeadersAvailable true
-</IfModule>" >>  /etc/httpd/conf.d/headers.conf
+    Header always set Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()"
+</IfModule>' >>  /etc/httpd/conf.d/headers.conf
 
 # Because Wordpress and plugins will make use of an .htaccess file, let's enable it.
 sed -i -e "156s/AllowOverride None/AllowOverride All/" /etc/httpd/conf/httpd.conf
