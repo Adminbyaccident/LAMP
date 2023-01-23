@@ -30,6 +30,10 @@
 # Let's update CentOS local repositories on this box.
 dnf update -y
 
+# Install EPEL repository
+dnf install -y epel-release
+dnf update -y
+
 # Install firewalld
 dnf install -y firewalld
 systemctl enable firewalld
