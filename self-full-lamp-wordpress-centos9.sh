@@ -30,6 +30,11 @@
 # Let's update CentOS local repositories on this box.
 dnf update -y
 
+# Install firewalld
+dnf install -y firewalld
+systemctl enable firewalld
+systemctl start firewalld
+
 # Allow HTTP through the firewall
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
