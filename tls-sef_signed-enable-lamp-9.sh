@@ -6,7 +6,7 @@
 # SCRIPT: tls-sef_signed-enable-lamp-9.sh
 # AUTHOR: ALBERT VALBUENA
 # DATE: 28-02-2023
-# SET FOR: Production
+# SET FOR: Test
 # (For Alpha, Beta, Dev, Test and Production)
 #
 # PLATFORM: CentOS 9 / RHEL 9
