@@ -148,7 +148,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 ' >> /etc/httpd/conf/httpd.conf
 
 # Installing missing dependencies
-dnf install -y httpd-tools php php-cli php-json php-gd php-mbstring php-pdo php-xml php-mysqlnd php-pecl-zip wget php-pecl-imagick
+dnf install -y httpd-tools php php-cli php-json php-gd php-mbstring php-pdo php-xml php-mysqlnd php-pecl-zip wget php-pecl-imagick php-intl
 
 # Avoid PHP's information (version, etc) being disclosed
 sed -i -e '/expose_php/s/expose_php = On/expose_php = Off/' /etc/php.ini
