@@ -242,6 +242,13 @@ cp -r /root/wordpress/* /var/www/html
 # Change the ownership of the DocumentRoot path content from root to the Apache HTTP user (named www)
 chown -R apache:apache /var/www/html
 
+# Make WordPress root directory read only
+chcon -t httpd_sys_content_t /var/www/html -R
+
+# Allow read and write into the wp-content folder in WordPress and wp-config.php for updates and plugin installs
+chcon -t httpd_sys_rw_content_t /var/www/html/wp-config.php
+chcon -t httpd_sys_rw_content_t /var/www/html/wp-content -R
+
 # No one but root can read these files. Read only permissions.
 chmod 400 /root/new_db_name.txt
 chmod 400 /root/new_db_user_name.txt
