@@ -53,6 +53,9 @@ systemctl enable httpd
 # Start Apache HTTP service
 systemctl start httpd
 
+# Enable SELinux to allow the web server to connect to the network
+setsebool -P httpd_can_network_connect 1
+
 # Let's install MariaDB database.
 dnf install -y mariadb-server mariadb
 
