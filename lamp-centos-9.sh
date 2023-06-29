@@ -44,6 +44,9 @@ systemctl enable httpd
 # Start Apache HTTP service
 systemctl start httpd
 
+# Enable SELinux to allow the web server to connect to the network
+setsebool -P httpd_can_network_connect 1
+
 # Let's install MariaDB database.
 dnf install -y mariadb-server mariadb
 
@@ -127,6 +130,9 @@ touch /var/www/html/info.php
 
 # Second we add a simple PHP script so it will display information about the site.
 echo "<?php phpinfo(); ?>" >> /var/www/html/info.php
+
+# Set SELinux to only read and write capabilities on the /var/www/html/ folder for sites in it
+chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 
 echo "Once you've visually checked PHP is working manually remove the info.php file placed in /var/www/html/info.php"
 
