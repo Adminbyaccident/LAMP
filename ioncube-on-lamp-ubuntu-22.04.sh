@@ -11,7 +11,7 @@
 #
 # PLATFORM: Ubuntu 22.04
 #
-# PURPOSE: This script installs ionCUBE on a LAMP stack (Apache 2.4, MariaDB 10.6 and PHP 8.1)
+# PURPOSE: This script installs ionCUBE on a LAMP stack (Apache 2.4, MySQL 8 and PHP 8.1)
 # For more information: https://www.ioncube.com/loaders.php
 #
 # REV LIST:
