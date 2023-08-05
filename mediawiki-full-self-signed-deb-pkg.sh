@@ -149,7 +149,7 @@ sed -i -e '/upload_max_filesize/s/upload_max_filesize = 2M/upload_max_filesize =
 sed -i -e 'memory_limit/s/memory_limit = 128M/memory_limit = 256M/'g /etc/php/8.1/fpm/php.ini
 
 # Reload the PHP service to get these changes to be applied
-systemctl status php8.1-fpm.service
+systemctl reload php8.1-fpm.service
 
 # Install pwgen in order to generate random values for DB_NAME, DB_USER_NAME and NEW_DB_PASSWORD when building a new DB for MediaWiki
 apt install -y pwgen
