@@ -134,8 +134,8 @@ mv /root/ioncube /usr/local
 echo 'zend_extension = /usr/local/ioncube/ioncube_loader_lin_8.1.so' >> /etc/php/8.1/cli/php.ini
 echo 'zend_extension = /usr/local/ioncube/ioncube_loader_lin_8.1.so' >> /etc/php/8.1/fpm/php.ini
 
-# Reload Apache HTTP to recognise the PHP configuration change
-systemctl reload apache2
+# Reload PHP-FPM to recognise the PHP configuration change in php.ini
+systemctl reload php8.1-fpm.service
 
 # Final message
 echo "A LAMP stack system has been deployed."
