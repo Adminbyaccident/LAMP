@@ -1,0 +1,63 @@
+# Base Image
+FROM ubuntu:24.04
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV WP_DB_NAME=wordpress
+ENV WP_DB_USER=wordpressuser
+ENV WP_DB_PASSWORD=password
+ENV WP_DB_HOST=localhost
+ENV WP_TABLE_PREFIX=wp_
+
+# Update and install necessary packages
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    libapache2-mod-fcgid \
+    mariadb-server \
+    php8.3-fpm \
+    php8.3-mysql \
+    curl \
+    wget \
+    unzip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable necessary Apache modules and PHP-FPM configuzration
+RUN a2enmod proxy_fcgi setenvif mpm_event rewrite && \
+    a2enconf php8.3-fpm
+
+# Download and extract WordPress
+RUN wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz \
+    && tar -xzf /tmp/wordpress.tar.gz -C /var/www/html --strip-components=1 \
+    && rm /tmp/wordpress.tar.gz
+
+# Create wp-config.php file with the necessary configurations
+RUN if [ -f /var/www/html/wp-config-sample.php ]; then \
+    cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php && \
+    sed -i "s/database_name_here/${WP_DB_NAME}/" /var/www/html/wp-config.php && \
+    sed -i "s/username_here/${WP_DB_USER}/" /var/www/html/wp-config.php && \
+    sed -i "s/password_here/${WP_DB_PASSWORD}/" /var/www/html/wp-config.php && \
+    sed -i "s/localhost/${WP_DB_HOST}/" /var/www/html/wp-config.php && \
+    sed -i "s/wp_/${WP_TABLE_PREFIX}/" /var/www/html/wp-config.php; \
+    else echo "wp-config-sample.php not found!"; exit 1; fi
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && find /var/www/html -type d -exec chmod 750 {} \; \
+    && find /var/www/html -type f -exec chmod 640 {} \;	\
+	&& rm /var/www/html/index.html
+
+# Start and configure MariaDB
+RUN service mariadb start \
+    && mysql -e "CREATE DATABASE ${WP_DB_NAME};" \
+    && mysql -e "CREATE USER '${WP_DB_USER}'@'localhost' IDENTIFIED BY '${WP_DB_PASSWORD}';" \
+    && mysql -e "GRANT ALL PRIVILEGES ON ${WP_DB_NAME}.* TO '${WP_DB_USER}'@'localhost';" \
+    && mysql -e "FLUSH PRIVILEGES;" \
+    && service mariadb stop
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache, PHP-FPM, and MariaDB services
+#CMD ["sh", "-c", "service mariadb start && service php8.3-fpm start && apachectl -D FOREGROUND"]
+ENTRYPOINT ["sh", "-c", "service mariadb start && service php8.3-fpm start && apachectl -D FOREGROUND"]
